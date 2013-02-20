@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nokia Maps API and RequireJS Example</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="require.js"></script>
+    <script>
+        require.config({
+            waitSeconds: 15,
+            paths: {
+                nokiaLoader: 'http://api.maps.nokia.com/2.2.4/jsl.js?blank=true',
+                domReady: 'requirejs_plugins/domReady',
+                nokia: 'requirejs_plugins/nokia'
+            },
+            shim: {
+                nokiaLoader: {
+                    exports: 'nokia'
+                },
+                ovi: {
+                    exports: 'ovi'
+                }
+            }
+        });
+        require(['module_a', 'module_b', 'module_c', 'ovi', 'domReady!'], function(modA, modB, modC, ovi) {
+            var map = new nokia.maps.map.Display(document.getElementById('map'), {
+                center: [52.521542, 13.382178],
+                zoomLevel: 6,
+                components: [
+                    new nokia.maps.map.component.Behavior(),
+                    new nokia.maps.map.component.TypeSelector(),
+                    new nokia.maps.map.component.DistanceMeasurement(),
+                    new nokia.maps.map.component.Overview()
+                ]
+            });
+            console && console.log && console.log({
+                moduleA: modA,
+                moduleB: new modB(),
+                moduleC: modC,
+                ovi: ovi
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="map" class="fullSize"></div>
+</body>
+</html>
