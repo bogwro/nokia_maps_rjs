@@ -9,9 +9,9 @@ More about RequireJS [here](http://requirejs.org)
     require.config({
         waitSeconds: 15,
         paths: {
-            nokiaLoader: 'http://api.maps.nokia.com/2.2.4/jsl.js?blank=true',
-            domReady: 'requirejs_plugins/domReady',
-            nokia: 'requirejs_plugins/nokia'
+            nokiaLoader: 'http://api.maps.nokia.com/2.2.4/jsl.js?blank=true', // the important part here is to not load any of the API parts apart the loader itself -> blank=true
+            domReady: 'requirejs_plugins/domReady',  // you need to add it on your own; download it from: http://requirejs.org/docs/download.html#domReady
+            nokia: 'requirejs_plugins/nokia' // that is path to the nokia.js file on your local file system
         },
         shim: {
             nokiaLoader: {
